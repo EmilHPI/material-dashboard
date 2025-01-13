@@ -239,6 +239,12 @@
             Plan demand and optimize service with precise data analytics and predictions.
           </p>
         </div>
+
+        <div class="d-flex align-items-center mb-4">
+          <label for="datePicker" class="me-3 font-weight-bold">Select a Date:</label>
+          <input type="date" id="datePicker" class="form-control" style="width: 200px;">
+        </div>
+        
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-header p-2 ps-3">
@@ -254,7 +260,6 @@
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-2 ps-3">
-              <p class="mb-0 text-sm"><span class="text-success font-weight-bolder">+55% </span>than last week</p>
             </div>
           </div>
         </div>
@@ -273,7 +278,6 @@
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-2 ps-3">
-              <p class="mb-0 text-sm"><span class="text-success font-weight-bolder">+3% </span>than last month</p>
             </div>
           </div>
         </div>
@@ -292,7 +296,6 @@
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-2 ps-3">
-              <p class="mb-0 text-sm"><span class="text-danger font-weight-bolder">-2% </span>than yesterday</p>
             </div>
           </div>
         </div>
@@ -311,7 +314,6 @@
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-2 ps-3">
-              <p class="mb-0 text-sm"><span class="text-success font-weight-bolder">+5% </span>than yesterday</p>
             </div>
           </div>
         </div>
@@ -986,26 +988,40 @@
   <script src="../assets/js/material-dashboard.min.js?v=3.2.0"></script>
 
   <script type="module">
-    import { loadData, calculateUnusedMeals, calculatePotentialCO2Savings, calculateCustomerSatisfaction, calculateCostSavings } from '../assets/js/kpi-calculations.js';
+    import { loadData, filterDataByDate, updateKPIs, validateDate } from '../assets/js/kpi-calculations.js';
 
-    loadData().then(data => {
-        // Unused Meals
-        const unusedMeals = calculateUnusedMeals(data);
-        document.getElementById('unusedMeals').textContent = `${unusedMeals} meals`;
-
-        // Potential CO2 Savings
-        const co2Savings = calculatePotentialCO2Savings(data);
-        document.getElementById('co2Savings').textContent = `${co2Savings} kg`;
-
-        // Customer Satisfaction
-        const customerSatisfaction = calculateCustomerSatisfaction(data);
-        document.getElementById('customerSatisfaction').textContent = `${customerSatisfaction} / 100`;
-
-        // Cost Savings
-        const costSavings = calculateCostSavings(data);
-        document.getElementById('costSavings').textContent = `$${costSavings}`;
+    document.addEventListener('DOMContentLoaded', () => {
+      loadData().then(data => {
+          const datePicker = document.getElementById('datePicker');
+          const defaultDate = new Date().toISOString().split('T')[0];
+          datePicker.value = defaultDate;
+  
+          // Prüfe und zeige Daten für das Standarddatum an
+          if (!validateDate(data, defaultDate)) {
+              console.warn(`No data available for the default date: ${defaultDate}`);
+              updateKPIs([]);
+          } else {
+              const filteredData = filterDataByDate(data, defaultDate);
+              updateKPIs(filteredData);
+          }
+  
+          // Event-Listener für das Ändern des Datums
+          datePicker.addEventListener('change', (event) => {
+              const selectedDate = event.target.value;
+              if (!validateDate(data, selectedDate)) {
+                  console.warn(`No data available for the selected date: ${selectedDate}`);
+                  updateKPIs([]);
+              } else {
+                  const filteredData = filterDataByDate(data, selectedDate);
+                  updateKPIs(filteredData);
+              }
+            });
+        });
     });
-</script>
+  
+  
+
+  </script>
 
   
 </body>
