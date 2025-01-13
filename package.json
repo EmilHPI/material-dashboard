@@ -9,7 +9,7 @@
   },
   "scripts": {
     "open-app": "gulp open-app",
-    "start": "npm run open-app",
+    "start": "live-server ./ --port=3000",
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile-scss": "sass --style expanded --source-map --precision=6 assets/scss/material-dashboard.scss assets/css/material-dashboard.css --quiet",
     "watch": "npm run compile:scss -- --watch"
@@ -36,8 +36,10 @@
     "url": "https://github.com/creativetimofficial/material-dashboard/issues"
   },
   "devDependencies": {
-    "gulp": "5.0.0",
+    "gulp": "^5.0.0",
     "gulp-open": "3.0.1",
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2",
     "sass": "1.80.2"
   },
   "homepage": "https://creative-tim.com/product/material-dashboard"
