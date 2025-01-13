@@ -244,11 +244,11 @@
             <div class="card-header p-2 ps-3">
               <div class="d-flex justify-content-between">
                 <div>
-                  <p class="text-sm mb-0 text-capitalize">Today's Money</p>
-                  <h4 class="mb-0">$53k</h4>
+                  <p class="text-sm mb-0 text-capitalize">Unused Meals</p>
+                  <h4 class="mb-0" id="unusedMeals">Loading...</h4>
                 </div>
                 <div class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg">
-                  <i class="material-symbols-rounded opacity-10">weekend</i>
+                  <i class="material-symbols-rounded opacity-10">restaurant</i>
                 </div>
               </div>
             </div>
@@ -263,11 +263,11 @@
             <div class="card-header p-2 ps-3">
               <div class="d-flex justify-content-between">
                 <div>
-                  <p class="text-sm mb-0 text-capitalize">Today's Users</p>
-                  <h4 class="mb-0">2300</h4>
+                  <p class="text-sm mb-0 text-capitalize">Potential CO₂ Savings</p>
+                  <h4 class="mb-0" id="co2Savings">Loading...</h4>
                 </div>
                 <div class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg">
-                  <i class="material-symbols-rounded opacity-10">person</i>
+                  <i class="material-symbols-rounded opacity-10">eco</i>
                 </div>
               </div>
             </div>
@@ -282,11 +282,11 @@
             <div class="card-header p-2 ps-3">
               <div class="d-flex justify-content-between">
                 <div>
-                  <p class="text-sm mb-0 text-capitalize">Ads Views</p>
-                  <h4 class="mb-0">3,462</h4>
+                  <p class="text-sm mb-0 text-capitalize">Customer Satisfaction</p>
+                  <h4 class="mb-0" id="customerSatisfaction">Loading...</h4>
                 </div>
                 <div class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg">
-                  <i class="material-symbols-rounded opacity-10">leaderboard</i>
+                  <i class="material-symbols-rounded opacity-10">mood</i>
                 </div>
               </div>
             </div>
@@ -301,11 +301,11 @@
             <div class="card-header p-2 ps-3">
               <div class="d-flex justify-content-between">
                 <div>
-                  <p class="text-sm mb-0 text-capitalize">Sales</p>
-                  <h4 class="mb-0">$103,430</h4>
+                  <p class="text-sm mb-0 text-capitalize">Cost Savings</p>
+                  <h4 class="mb-0" id="costSavings">Loading...</h4>
                 </div>
                 <div class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg">
-                  <i class="material-symbols-rounded opacity-10">weekend</i>
+                  <i class="material-symbols-rounded opacity-10">attach_money</i>
                 </div>
               </div>
             </div>
@@ -984,6 +984,30 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/material-dashboard.min.js?v=3.2.0"></script>
+
+  <script type="module">
+    import { loadData, calculateUnusedMeals, calculatePotentialCO2Savings, calculateCustomerSatisfaction, calculateCostSavings } from '../assets/js/kpi-calculations.js';
+
+    loadData().then(data => {
+        // Unused Meals
+        const unusedMeals = calculateUnusedMeals(data);
+        document.getElementById('unusedMeals').textContent = `${unusedMeals} meals`;
+
+        // Potential CO2 Savings
+        const co2Savings = calculatePotentialCO2Savings(data);
+        document.getElementById('co2Savings').textContent = `${co2Savings} kg`;
+
+        // Customer Satisfaction
+        const customerSatisfaction = calculateCustomerSatisfaction(data);
+        document.getElementById('customerSatisfaction').textContent = `${customerSatisfaction} / 100`;
+
+        // Cost Savings
+        const costSavings = calculateCostSavings(data);
+        document.getElementById('costSavings').textContent = `$${costSavings}`;
+    });
+</script>
+
+  
 </body>
 
 </html>
