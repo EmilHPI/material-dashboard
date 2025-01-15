@@ -33,7 +33,7 @@ services_and_dish_types = {
             "Second": {
                 "components": ["Breakfast", "Dinner"],
                 "dish_types": {
-                    "Breakfast": {"options": [""], "ratio": 1},
+                    "Breakfast": {"options": ["Breakfast"], "ratio": 1},
                     "Dinner": {"options": ["Meat", "Veg"], "ratio": 0.6}
                 }
             }
@@ -44,7 +44,7 @@ services_and_dish_types = {
             "First": {
                 "components": ["Breakfast", "Hot Meal"],
                 "dish_types": {
-                    "Breakfast": {"options": [""], "ratio": 1},
+                    "Breakfast": {"options": ["Breakfast"], "ratio": 1},
                     "Hot Meal": {"options": ["Meat", "Veg"], "ratio": 0.6}
                 }
             }
@@ -89,6 +89,9 @@ def generate_data(date, is_future):
             passengers = random.randint(30, 60)
             for service, service_details in details.items():
                 for component in service_details["components"]:
+                    dish_types = service_details["dish_types"][component]["options"]
+                    if not dish_types:
+                        print(f"Warnung: Keine dish_types für {component} in {service}")
                     dish_types = service_details["dish_types"][component]["options"]
                     ratio = service_details["dish_types"][component]["ratio"]
                     load_factor = len(dish_types) * ratio
