@@ -33,7 +33,7 @@ services_and_dish_types = {
             "Second": {
                 "components": ["Breakfast", "Dinner"],
                 "dish_types": {
-                    "Breakfast": {"options": [""], "ratio": 1},
+                    "Breakfast": {"options": ["Breakfast"], "ratio": 1},
                     "Dinner": {"options": ["Meat", "Veg"], "ratio": 0.6}
                 }
             }
@@ -44,7 +44,7 @@ services_and_dish_types = {
             "First": {
                 "components": ["Breakfast", "Hot Meal"],
                 "dish_types": {
-                    "Breakfast": {"options": [""], "ratio": 1},
+                    "Breakfast": {"options": ["Breakfast"], "ratio": 1},
                     "Hot Meal": {"options": ["Meat", "Veg"], "ratio": 0.6}
                 }
             }
