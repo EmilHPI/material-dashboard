@@ -254,10 +254,9 @@
             <div class="card-header pb-0">
               <div class="row">
                 <div class="col-lg-6 col-7">
-                  <h6>Departures</h6>
+                  <h4>Departures</h4>
                   <p class="text-sm mb-0">
                     <i class="fa fa-check text-info" aria-hidden="true"></i>
-                    <span class="font-weight-bold ms-1">13 left</span> today
                   </p>
                 </div>
                 <div class="col-lg-6 col-5 my-auto text-end">
@@ -309,8 +308,8 @@
             <div class="col-12 mb-4">
               <div class="card">
                 <div class="card-header mb-0">
-                  <h5 class="flight-info-header">Information for: Flight 4Y001 to JFK at 08:00</h5>
-                  <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 0px;">
+                  <h4 class="flight-info-header">Information for: Flight 4Y007 to LHR at 07:00</h4>
+                  <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 0px; margin-top: 40px;">
                     <button class="btn" style="background-color: #333; color: white; border: none; padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); cursor: pointer;">
                       Business
                     </button>
@@ -338,7 +337,7 @@
                             <div class="col-md-4">
                               <div class="card card-food h-100">
                                 <div class="card-header d-flex align-items-center mb-1">
-                                  <i class="material-symbols-rounded text-primary me-2">fastfood</i>
+                                  <i class="material-symbols-rounded me-2" style="color: #000;">fastfood</i>
                                   <h6 class="mb-0">Starter</h6>
                                 </div>
                                 <div class="card-body px-3 py-2">
@@ -351,7 +350,7 @@
                             <div class="col-md-4">
                               <div class="card card-food h-100">
                                 <div class="card-header d-flex align-items-center mb-1">
-                                  <i class="material-symbols-rounded text-primary me-2">restaurant_menu</i>
+                                  <i class="material-symbols-rounded me-2" style="color: #000;">restaurant_menu</i>
                                   <h6 class="mb-0">Main</h6>
                                 </div>
                                 <div class="card-body px-3 py-2">
@@ -365,7 +364,7 @@
                             <div class="col-md-4">
                               <div class="card card-food h-100">
                                 <div class="card-header d-flex align-items-center mb-1">
-                                  <i class="material-symbols-rounded text-primary me-2">cake</i>
+                                  <i class="material-symbols-rounded me-2" style="color: #000;">cake</i>
                                   <h6 class="mb-0">Dessert</h6>
                                 </div>
                                 <div class="card-body px-3 py-2">
@@ -394,7 +393,7 @@
                             <div class="col-md-6">
                               <div class="card card-food h-100">
                                 <div class="card-header d-flex align-items-center mb-1">
-                                  <i class="material-symbols-rounded text-primary me-2">free_breakfast</i>
+                                  <i class="material-symbols-rounded me-2" style="color: #000;">free_breakfast</i>
                                   <h6 class="mb-0">Breakfast</h6>
                                 </div>
                                 <div class="card-body px-3 py-2">
@@ -406,7 +405,7 @@
                             <div class="col-md-6">
                               <div class="card card-food h-100">
                                 <div class="card-header d-flex align-items-center mb-1">
-                                  <i class="material-symbols-rounded text-primary me-2">dining</i>
+                                  <i class="material-symbols-rounded me-2" style="color: #000;">dining</i>
                                   <h6 class="mb-0">Dinner</h6>
                                 </div>
                                 <div class="card-body px-3 py-2">
@@ -732,7 +731,7 @@
 
     // Funktion zum Erstellen einer Tabellenzeile
     const createRow = (flight) => `
-      <tr style="height: 50px;" onclick="selectFlight('${flight.flightNumber}')"> <!-- Höhe der Zeile kann hier angepasst werden -->
+      <tr style="height: 50px;" onclick="')"> <!-- Höhe der Zeile kann hier angepasst werden -->
         <td class="align-middle text-center">
           <!-- Status Icon/Text -->
           <h6 class="mb-0 text-sm text-truncate" id="${flight.status}">
@@ -792,7 +791,6 @@
               rows.forEach(row => {
                 row.addEventListener("click", () => {
                   const flightNumber = row.querySelector('td:nth-child(2) h6').textContent.trim();
-                  console.log(flightNumber);
                   selectFlight(filteredData, flightNumber); 
                 });
               });

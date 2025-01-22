@@ -1,5 +1,5 @@
 export async function loadData() {
-    const response = await fetch('../assets/data/pendle_dummy_data.json');
+    const response = await fetch('../assets/data/prognose.json');
     if (!response.ok) {
         throw new Error('Failed to load data');
     }
